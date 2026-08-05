@@ -1,10 +1,11 @@
-prefix=@prefix@
-exec_prefix=@exec_prefix@
-libdir=@libdir@
-includedir=@includedir@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=@CMAKE_INSTALL_PREFIX@
+libdir=@LIB_INSTALL_DIR@
+includedir=@CMAKE_INSTALL_PREFIX@/include
 
-Name: modbus
+Name: libmodbus
 Description: Modbus library
-Version: @VERSION@
+Version: @PROJECT_VERSION@
+Requires:
 Libs: -L${libdir} -lmodbus
-Cflags: -I${includedir}/modbus
+Cflags: -I${includedir}
