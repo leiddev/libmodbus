@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 
 # ============================================================================
 # libmodbus - CMake Build System
 # ============================================================================
 # Version: 3.2.0
-# Minimum CMake: 3.15 (required for VS2022 support)
+# Minimum CMake: 3.10 (required for VS2022 support)
 # ============================================================================
 
 project(libmodbus VERSION 3.2.0 LANGUAGES C)
@@ -12,7 +12,7 @@ project(libmodbus VERSION 3.2.0 LANGUAGES C)
 # ============================================================================
 # Build Options
 # ============================================================================
-option(BUILD_SHARED_LIBS "Build shared library" ON)
+option(BUILD_SHARED_LIBS "Build shared library" OFF)
 option(BUILD_TESTING "Build tests" ON)
 option(LIBMODBUS_BUILD_TESTS "Build test programs" ${BUILD_TESTING})
 
