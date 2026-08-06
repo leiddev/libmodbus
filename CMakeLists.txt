@@ -69,8 +69,13 @@ endif()
 # Windows Specific
 # ============================================================================
 if(LIBMODBUS_OS_WINDOWS)
-    add_definitions(-DWINVER=0x0501)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    add_definitions(
+        -DWINVER=0x0501
+        -DHAVE_CONFIG_H
+        -D_CRT_SECURE_NO_WARNINGS
+        -D_CRT_SECURE_NO_DEPRECATE=1
+        -D_CRT_NONSTDC_NO_DEPRECATE=1
+    )
 
     if(BUILD_SHARED_LIBS)
         set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)

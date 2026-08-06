@@ -9,10 +9,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef _MSC_VER
 #include <unistd.h>
+#endif
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+#define usleep(us) Sleep((us) / 1000)
+#define close closesocket
+#endif
 
 // clang-format off
 #ifdef _WIN32
+# ifndef FD_SETSIZE
+#   define FD_SETSIZE 1024
+# endif
 # include <winsock2.h>
 #else
 # include <sys/socket.h>

@@ -12,7 +12,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef _MSC_VER
 #include <unistd.h>
+#else
+#include <winsock2.h>
+#define close closesocket
+#endif
 
 #ifndef PROXY_PORT
 #define PROXY_PORT 1503

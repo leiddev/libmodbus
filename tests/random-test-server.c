@@ -7,6 +7,9 @@
 #include <stdio.h>
 #ifndef _MSC_VER
 #include <unistd.h>
+#else
+#include <winsock2.h>
+#define close closesocket
 #endif
 #include <errno.h>
 #include <stdlib.h>

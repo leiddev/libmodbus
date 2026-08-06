@@ -16,6 +16,9 @@
 #include <string.h>
 
 #if defined(_WIN32)
+#  ifndef FD_SETSIZE
+#    define FD_SETSIZE 1024
+#  endif
 #  include <winsock2.h>
 #else
 #  include <arpa/inet.h>

@@ -36,6 +36,9 @@ foreach(program ${TEST_PROGRAMS})
     string(REPLACE "-" "_" program_underscore ${program})
     add_executable(${program} ${program}.c)
     target_link_libraries(${program} PRIVATE libmodbus::libmodbus)
+    if(LIBMODBUS_OS_WINDOWS)
+        target_link_libraries(${program} PRIVATE ws2_32)
+    endif()
     target_include_directories(${program} PRIVATE
         ${CMAKE_SOURCE_DIR}/src
         ${CMAKE_BINARY_DIR}/src

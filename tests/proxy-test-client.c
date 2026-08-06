@@ -13,7 +13,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef _MSC_VER
 #include <unistd.h>
+#endif
 
 #include "unit-test.h"
 
@@ -21,16 +23,16 @@
 #define PROXY_PORT 1503
 #endif
 
-#define BUG_REPORT(_cond, _format, _args...) \
+#define BUG_REPORT(_cond, _format, ...) \
     printf(                                  \
-        "\nLine %d: assertion error for '%s': " _format "\n", __LINE__, #_cond, ##_args)
+        "\nLine %d: assertion error for '%s': " _format "\n", __LINE__, #_cond, ##__VA_ARGS__)
 
-#define ASSERT_TRUE(_cond, _format, __args...)    \
+#define ASSERT_TRUE(_cond, _format, ...)    \
     {                                             \
         if (_cond) {                              \
             printf("OK\n");                       \
         } else {                                  \
-            BUG_REPORT(_cond, _format, ##__args); \
+            BUG_REPORT(_cond, _format, ##__VA_ARGS__); \
             goto close;                           \
         }                                         \
     };

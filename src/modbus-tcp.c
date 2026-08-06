@@ -28,6 +28,9 @@
 
 #if defined(_WIN32)
 /* Already set in modbus-tcp.h but it seems order matters in VS2005 */
+# ifndef FD_SETSIZE
+#   define FD_SETSIZE 1024
+# endif
 # include <winsock2.h>
 # include <ws2tcpip.h>
 # define SHUT_RDWR 2

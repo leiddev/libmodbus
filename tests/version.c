@@ -6,6 +6,7 @@
 
 #include <modbus.h>
 #include <stdio.h>
+#include <modbus.h>
 
 int main(void)
 {

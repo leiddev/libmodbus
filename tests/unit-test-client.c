@@ -9,7 +9,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifndef _MSC_VER
 #include <unistd.h>
+#endif
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#define usleep(us) Sleep((us) / 1000)
+#endif
 
 #include "unit-test.h"
 
@@ -33,16 +41,16 @@ int send_crafted_request(modbus_t *ctx,
 int equal_dword(uint16_t *tab_reg, const uint32_t value);
 int is_memory_equal(const void *s1, const void *s2, size_t size);
 
-#define BUG_REPORT(_cond, _format, _args...) \
+#define BUG_REPORT(_cond, _format, ...) \
     printf(                                  \
-        "\nLine %d: assertion error for '%s': " _format "\n", __LINE__, #_cond, ##_args)
+        "\nLine %d: assertion error for '%s': " _format "\n", __LINE__, #_cond, ##__VA_ARGS__)
 
-#define ASSERT_TRUE(_cond, _format, __args...)    \
+#define ASSERT_TRUE(_cond, _format, ...)    \
     {                                             \
         if (_cond) {                              \
             printf("OK\n");                       \
         } else {                                  \
-            BUG_REPORT(_cond, _format, ##__args); \
+            BUG_REPORT(_cond, _format, ##__VA_ARGS__); \
             goto close;                           \
         }                                         \
     };

@@ -53,6 +53,7 @@ DartConfiguration.tcl
 compile_commands.json
 install_manifest.txt
 Testing
+/out
 
 # CMake generated files
 libmodbusConfig.cmake

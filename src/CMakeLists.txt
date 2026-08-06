@@ -158,6 +158,7 @@ target_compile_options(modbus PRIVATE
 # Compile Definitions
 # ============================================================================
 target_compile_definitions(modbus PRIVATE
+    DLLBUILD
     SYSCONFDIR="${CMAKE_INSTALL_SYSCONFDIR}"
     LIBEXECDIR="${CMAKE_INSTALL_LIBEXECDIR}"
 )
